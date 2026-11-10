@@ -153,17 +153,3 @@ grounded answer costs an API call.
 ## Ragas
 `pip install -r backend/requirements-eval.txt`, then from `backend/`: run a full eval WITHOUT `--reuse` (so full passages are stored),
 then `python ../eval/run_ragas.py eval_results.jsonl --n 12`. Uses the LLM from `.env` as judge and the local embedding model.
-
-## Deployment (updated)
-Free-tier facts change; confirm on each provider's pricing page.
-- Database: Neon (free: 1 GB, suspends after 5 min idle) or Supabase. Create the project, run `CREATE EXTENSION vector;` and apply
-  `backend/app/schema.sql` (`psql "<connection string>" -f backend/app/schema.sql`). Create users and ingest from your own machine by setting
-  `DATABASE_URL` to the cloud database (ingestion needs Docling and is too heavy to run on a small host).
-- API: `backend/Dockerfile` is a slim image (CPU torch, the two local models baked in, listens on `$PORT`). It needs roughly 1 GB RAM.
-  Hugging Face Docker Spaces require a paid plan. Render's free web service sleeps after 15 minutes and may not have enough memory.
-  Cheap options: a small VPS (2 GB RAM), or run the API on your own machine and expose it with a Cloudflare quick tunnel.
-- Frontend: import `frontend/` into Vercel, set `NEXT_PUBLIC_API_URL` to the API URL; set `ALLOWED_ORIGINS` on the API to the Vercel URL.
-- Required API environment variables: `DATABASE_URL`, `JWT_SECRET`, `ENVIRONMENT=production`, `LLM_BASE_URL`,
-  `LLM_API_KEY`, `LLM_MODEL`, `EMBED_BACKEND=local`, `RERANK_BACKEND=local`, `MIN_RERANK_SCORE`,
-  `ALLOWED_ORIGINS`, and the `LANGFUSE_*` keys. With `ENVIRONMENT=production` the API refuses to start
-  while `JWT_SECRET` is still a default value.
