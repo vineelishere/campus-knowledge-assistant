@@ -1,0 +1,32 @@
+# --- Secrets / local configuration (never commit) ---
+.env
+.env.*
+!.env.example
+frontend/.env.local
+frontend/.env.local.example
+backend/.env.save
+
+# --- Python ---
+backend/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# --- Node / Next.js ---
+frontend/node_modules/
+frontend/.next/
+
+# --- Generated eval artifacts ---
+backend/eval_results.jsonl
+backend/ragas_scores.csv
+eval/ragas_scores.csv
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# TypeScript build info
+*.tsbuildinfo

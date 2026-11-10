@@ -1,0 +1,11 @@
+# Minimal dependencies for the unit suite (no Docling, no torch, no Ragas).
+# Usage (from backend/): pip install -r requirements-test.txt && python -m pytest
+fastapi>=0.115
+pydantic-settings>=2.4
+python-dotenv
+psycopg[binary,pool]>=3.2
+pgvector>=0.3
+numpy
+PyJWT>=2.8
+bcrypt>=4.1
+pytest>=8.0

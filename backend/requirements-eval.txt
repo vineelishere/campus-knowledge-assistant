@@ -1,0 +1,5 @@
+# Extra packages for eval/run_ragas.py (on top of requirements.txt)
+ragas>=0.2
+langchain-openai
+langchain-huggingface
+pandas
